@@ -14,6 +14,7 @@ const CartContext = React.createContext(defaultState);
 export default CartContext;
 
 export function CartContextProvider({ children }) {
+  // Set initial checkout
   const [checkout, setCheckout] = useState(
     JSON.parse(
       typeof window !== 'undefined' ? localStorage.getItem('checkout') : null
@@ -24,6 +25,7 @@ export function CartContextProvider({ children }) {
   const checkoutId = checkout?.id;
 
   React.useEffect(() => {
+    // Fetch checkout id from the server. If completed, remove local storage, else set checkout
     const getCheckout = async () => {
       if (checkoutId && typeof window !== 'undefined') {
         const fetchedCheckout = await client.checkout.fetch(checkoutId);
@@ -40,7 +42,7 @@ export function CartContextProvider({ children }) {
 
     getCheckout();
   }, [setCheckout, setSuccessfulOrder, checkoutId]);
-
+  // Fetch the product from the server
   async function getProductById(productId) {
     const product = await client.product.fetch(productId);
     return product;
