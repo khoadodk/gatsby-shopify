@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/no-onchange */
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Layout, ImageGallery } from 'components';
-import { Grid, SelectWrapper } from './styles';
 import { navigate, useLocation } from '@reach/router';
 import queryString from 'query-string';
+
+import { Layout, ImageGallery, ProductQuantityAdder } from 'components';
+import { Grid, SelectWrapper } from './styles';
 import CartContext from '../../context/CartContext';
 
 export const query = graphql`
@@ -74,6 +75,10 @@ const ProductTemplate = ({ data }) => {
                     ))}
                   </select>
                   <div>${selectedVariant?.price}</div>
+                  <ProductQuantityAdder
+                    available={selectedVariant.available}
+                    variantId={selectedVariant.id}
+                  />
                 </SelectWrapper>
               )}
             </>
