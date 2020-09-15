@@ -4,26 +4,14 @@ import { graphql } from 'gatsby';
 import { navigate, useLocation } from '@reach/router';
 import queryString from 'query-string';
 
-import { Layout, ImageGallery, ProductQuantityAdder } from 'components';
+import { Layout, ImageGallery, ProductQuantityAdder, Button } from 'components';
 import { Grid, SelectWrapper } from './styles';
 import CartContext from '../../context/CartContext';
 
 export const query = graphql`
   query ProductQuery($shopifyId: String) {
     shopifyProduct(shopifyId: { eq: $shopifyId }) {
-      shopifyId
-      title
-      description
-      images {
-        id
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 400) {
-              ...GatsbyImageSharpFluid_tracedSVG
-            }
-          }
-        }
-      }
+      ...ShopifyProductFields
     }
   }
 `;
@@ -58,6 +46,7 @@ const ProductTemplate = ({ data }) => {
   };
   return (
     <Layout>
+      <Button onClick={() => navigate(-1)}>Back to products</Button>
       <Grid>
         <div>
           <h1>{data.shopifyProduct.title}</h1>
