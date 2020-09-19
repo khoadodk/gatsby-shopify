@@ -12,6 +12,7 @@ const AllProducts = () => {
   const qs = queryString.parse(search);
   const selectedCollectionIds = qs.c?.split(',').filter(c => !!c) || [];
   const selectedCollectionIdsMap = {};
+  const searchTerm = qs.s;
 
   selectedCollectionIds.forEach(cId => {
     selectedCollectionIdsMap[cId] = true;
@@ -42,16 +43,52 @@ const AllProducts = () => {
     return true;
   };
 
-  const filteredProducts = products.filter(filterByCategory);
+  const filterbySearchTerm = product => {
+    if (searchTerm) {
+      return product.title.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0;
+    }
+    return true;
+  };
+
+  const filteredProducts = products
+    .filter(filterByCategory)
+    .filter(filterbySearchTerm);
 
   return (
     <Layout>
+      {!!searchTerm && !!filteredProducts.length && (
+        <h3>
+          Search Term: <strong>'{searchTerm}'</strong>
+        </h3>
+      )}
       <h4>{filteredProducts?.length} products</h4>
       <Content>
         <Filter />
-        <div>
-          <ProductsGrid products={filteredProducts} />
-        </div>
+        {!filteredProducts.length && (
+          <div>
+            <h3>
+              <span>Oh no! Nothing matches</span>
+              &nbsp;
+              <strong>'{searchTerm}'</strong>
+            </h3>
+
+            <div>
+              To help with your search why not try:
+              <br />
+              <br />
+              <ul>
+                <li>Check your spelling</li>
+                <li>Using less words</li>
+                <li>Try using different search term</li>
+              </ul>
+            </div>
+          </div>
+        )}
+        {!!filteredProducts.length && (
+          <div>
+            <ProductsGrid products={filteredProducts} />
+          </div>
+        )}
       </Content>
     </Layout>
   );
