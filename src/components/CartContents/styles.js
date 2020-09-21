@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const Footer = styled.footer`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  > div:last-child {
+    text-align: right;
+  }
+`;
+
 export const CartHeader = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr 2fr 1fr 40px;

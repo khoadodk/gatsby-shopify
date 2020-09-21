@@ -1,12 +1,17 @@
 import React from 'react';
-import { HeaderWrapper } from './styles';
-import { Cart, Search } from 'components';
+import { HeaderWrapper, LogoWrapper } from './styles';
+import { Cart, Search, Logo } from 'components';
 
 export const Header = () => {
   return (
-    <HeaderWrapper>
-      <Search />
-      <Cart />
-    </HeaderWrapper>
+    <>
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
+      <HeaderWrapper>
+        <Search />
+        <Cart />
+      </HeaderWrapper>
+    </>
   );
 };

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { StyledLink } from '../StyledLink';
 
 export const ProductTileWrapper = styled.div`
   border: 1px solid #ddd;
@@ -8,16 +7,6 @@ export const ProductTileWrapper = styled.div`
   border-top-left-radius: 5px;
   overflow: hidden;
   flex-direction: column;
-  > ${StyledLink} {
-    border: 1px solid black;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
-    color: black;
-    text-transform: uppercase;
-  }
 `;
 
 export const Title = styled.div`

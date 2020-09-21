@@ -8,3 +8,6 @@ export const HeaderWrapper = styled.header`
   box-sizing: border-box;
   flex-wrap: wrap;
 `;
+export const LogoWrapper = styled.div`
+  text-align: center;
+`;

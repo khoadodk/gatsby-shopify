@@ -17,3 +17,5 @@ export * from './ProductTile';
 export * from './Filter';
 export * from './Checkbox';
 export * from './Search';
+export * from './StyledLink';
+export * from './Logo';

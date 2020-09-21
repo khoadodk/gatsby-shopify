@@ -61,7 +61,9 @@ const AllProducts = () => {
           Search Term: <strong>'{searchTerm}'</strong>
         </h3>
       )}
-      <h4>{filteredProducts?.length} products</h4>
+      <h4>
+        <strong>{filteredProducts?.length}</strong> products found!
+      </h4>
       <Content>
         <Filter />
         {!filteredProducts.length && (

@@ -15,7 +15,7 @@ export const ProductTile = ({
       <Img fluid={imageFluid} />
       <Title>{title}</Title>
       <Description>{description}</Description>
-      <Price>from ${minPrice}</Price>
+      <Price>from ${Number.parseFloat(minPrice).toFixed(2)}</Price>
       <StyledLink to={`/products/${handle}`}>View product</StyledLink>
     </ProductTileWrapper>
   );
